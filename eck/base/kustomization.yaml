@@ -1,2 +1,4 @@
 resources:
-- es-namespace.yaml
+- eck-namespace.yaml
+- eck-operatorgroup.yaml
+- eck-subscription.yaml
