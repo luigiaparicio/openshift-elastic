@@ -18,6 +18,20 @@ spec:
         node.ingest: true
         node.master: true
         node.store.allow_mmap: false
+      podTemplate:
+       metadata:
+         labels:
+           app: elasticsearch-sample 
+       spec:
+         containers:
+           - name: elasticsearch
+             resources:
+               requests:
+                 memory: 8Gi
+                 cpu: 1
+               limits:
+                 memory: 8Gi
+                 cpu: 2
       count: 3
       name: default
       podTemplate:
