@@ -18,7 +18,7 @@ spec:
   sync:
     comparedTo:
       destination:
-        namespace: argocd
+        namespace: elastic-system
         server: https://kubernetes.default.svc
       source:
         path: manifests/eck/base
