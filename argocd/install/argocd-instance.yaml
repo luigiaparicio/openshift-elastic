@@ -1,0 +1,29 @@
+apiVersion: argoproj.io/v1alpha1
+kind: ArgoCD
+metadata:
+  name: argocd
+  namespace: argocd
+spec:
+  server:
+    route:
+      enabled: true
+    autoscale:
+      enabled: true
+  dex:
+    openShiftOAuth: true
+    image: quay.io/redhat-cop/dex
+    version: v2.22.0-openshift
+  resourceCustomizations: |
+    route.openshift.io/Route:
+      ignoreDifferences: |
+        jsonPointers:
+        - /spec/host
+  rbac:
+    defaultPolicy: 'role:readonly'
+    policy: |
+      g, system:cluster-admins, role:admin
+    scopes: '[groups]'
+  initialRepositories: |
+    - name: openshift-elastic
+      type: git
+      url: https://github.com/luigiaparicio/openshift-elastic
