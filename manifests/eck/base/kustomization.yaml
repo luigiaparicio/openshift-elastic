@@ -2,4 +2,5 @@ resources:
 - eck-namespace.yaml
 - eck-operatorgroup.yaml
 - eck-subscription.yaml
-- eck-instance.yaml
+- es-instance.yaml
+- es-route.yaml
