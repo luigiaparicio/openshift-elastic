@@ -10,7 +10,7 @@ spec:
   source:
     path: manifests/eck/base
     repoURL: https://github.com/luigiaparicio/openshift-elastic
-    targetRevision: master
+    targetRevision: main
   syncPolicy:
     automated:
       prune: true
@@ -23,4 +23,4 @@ spec:
       source:
         path: manifests/eck/base
         repoURL: https://github.com/luigiaparicio/openshift-elastic
-        targetRevision: master
+        targetRevision: main
