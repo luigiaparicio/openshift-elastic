@@ -1,6 +1,8 @@
 apiVersion: operators.coreos.com/v1
 kind: OperatorGroup
 metadata:
+  olm.providedAPIs: ApmServer.v1.apm.k8s.elastic.co,Beat.v1beta1.beat.k8s.elastic.co,Elasticsearch.v1.elasticsearch.k8s.elastic.co,EnterpriseSearch.v1beta1.enterprisesearch.k8s.elastic.co,Kibana.v1.kibana.k8s.elastic.co
+  generateName: elastic-system-
   name: elastic-system
   namespace: elastic-system
 spec:
