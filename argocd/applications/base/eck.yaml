@@ -1,0 +1,26 @@
+apiVersion: argoproj.io/v1alpha1
+kind: Application
+metadata:
+  name: eck
+spec:
+  destination:
+    namespace: argocd
+    server: https://kubernetes.default.svc
+  project: eck
+  source:
+    path: manifests/eck/base
+    repoURL: https://github.com/luigiaparicio/openshift-elastic
+    targetRevision: master
+  syncPolicy:
+    automated:
+      prune: true
+      selfHeal: true
+  sync:
+    comparedTo:
+      destination:
+        namespace: argocd
+        server: https://kubernetes.default.svc
+      source:
+        path: manifests/eck/base
+        repoURL: https://github.com/luigiaparicio/openshift-elastic
+        targetRevision: master
