@@ -4,3 +4,5 @@ resources:
 - eck-subscription.yaml
 - es-instance.yaml
 - es-route.yaml
+- kibana-instance.yaml
+- kibana-route.yaml
