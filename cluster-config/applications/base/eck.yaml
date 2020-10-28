@@ -10,7 +10,7 @@ spec:
   source:
     path: manifests/eck/base
     repoURL: https://github.com/luigiaparicio/openshift-elastic
-    targetRevision: main
+    targetRevision: master
   syncPolicy:
     automated:
       prune: true
