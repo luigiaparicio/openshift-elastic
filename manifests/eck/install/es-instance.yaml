@@ -13,27 +13,52 @@ spec:
     tls:
       certificate: {}
   nodeSets:
-    - config:
-        node.data: true
-        node.ingest: true
-        node.master: true
-        node.store.allow_mmap: false
+    - name: es-master
+      config:
+        node.roles: ["master"]
       podTemplate:
-       metadata:
-         labels:
-           app: elasticsearch-sample 
-       spec:
-         containers:
-           - name: elasticsearch
-             resources:
-               requests:
-                 memory: 8Gi
-                 cpu: 1
-               limits:
-                 memory: 8Gi
-                 cpu: 2
+        metadata:
+          labels:
+            app: elasticsearch-sample
+        spec:
+          initContainers:
+            - name: sysctl
+              securityContext:
+                privileged: true
+              command: ["sh", "-c", "sysctl -w vm.max_map_count=262144"]
+          containers:
+            - name: elasticsearch
+              resources:
+                requests:
+                  memory: 1Gi
+                  cpu: 1
+                limits:
+                  memory: 1Gi
+                  cpu: 1
       count: 3
-      name: default
+    - name: es-data
+      config:
+        node.roles: ["data", "ingest"]
+      podTemplate:
+        metadata:
+          labels:
+            app: elasticsearch-sample
+        spec:
+          initContainers:
+            - name: sysctl
+              securityContext:
+                privileged: true
+              command: ["sh", "-c", "sysctl -w vm.max_map_count=262144"]
+          containers:
+            - name: elasticsearch
+              resources:
+                requests:
+                  memory: 4Gi
+                  cpu: 1
+                limits:
+                  memory: 4Gi
+                  cpu: 1
+      count: 5
       volumeClaimTemplates:
         - metadata:
             name: elasticsearch-data
@@ -42,7 +67,7 @@ spec:
               - ReadWriteOnce
             resources:
               requests:
-                storage: 100Gi
+                storage: 10Gi
             storageClassName: gp2
   transport:
     service:
