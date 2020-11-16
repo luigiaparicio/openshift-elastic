@@ -31,11 +31,13 @@ spec:
             - name: elasticsearch
               resources:
                 requests:
-                  memory: 1Gi
+                  memory: 4Gi
                   cpu: 1
                 limits:
-                  memory: 1Gi
+                  memory: 4Gi
                   cpu: 1
+          # serviceAccount: elasticsearch
+          # serviceAccountName: elasticsearch
       count: 3
     - name: es-data
       config:
@@ -60,6 +62,8 @@ spec:
                 limits:
                   memory: 4Gi
                   cpu: 1
+          # serviceAccount: elasticsearch
+          # serviceAccountName: elasticsearch
       count: 5
       volumeClaimTemplates:
         - metadata:
