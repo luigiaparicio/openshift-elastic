@@ -16,16 +16,17 @@ spec:
     - name: es-master
       config:
         node.roles: ["master"]
+        node.store.allow_mmap: false
       podTemplate:
         metadata:
           labels:
             app: elasticsearch-sample
         spec:
-          initContainers:
-            - name: sysctl
-              securityContext:
-                privileged: true
-              command: ["sh", "-c", "sysctl -w vm.max_map_count=262144"]
+          # initContainers:
+          #   - name: sysctl
+          #     securityContext:
+          #       privileged: true
+          #     command: ["sh", "-c", "sysctl -w vm.max_map_count=262144"]
           containers:
             - name: elasticsearch
               resources:
@@ -39,16 +40,17 @@ spec:
     - name: es-data
       config:
         node.roles: ["data", "ingest"]
+        node.store.allow_mmap: false
       podTemplate:
         metadata:
           labels:
             app: elasticsearch-sample
         spec:
-          initContainers:
-            - name: sysctl
-              securityContext:
-                privileged: true
-              command: ["sh", "-c", "sysctl -w vm.max_map_count=262144"]
+          # initContainers:
+          #   - name: sysctl
+          #     securityContext:
+          #       privileged: true
+          #     command: ["sh", "-c", "sysctl -w vm.max_map_count=262144"]
           containers:
             - name: elasticsearch
               resources:
