@@ -2,7 +2,3 @@ resources:
 - eck-namespace.yaml
 - eck-operatorgroup.yaml
 - eck-subscription.yaml
-- es-instance.yaml
-- es-route.yaml
-- kibana-instance.yaml
-- kibana-route.yaml
