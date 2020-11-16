@@ -8,7 +8,7 @@ spec:
     server: https://kubernetes.default.svc
   project: eck
   source:
-    path: manifests/eck/base
+    path: manifests/eck/install
     repoURL: https://github.com/luigiaparicio/openshift-elastic
     targetRevision: master
   syncPolicy:
@@ -21,6 +21,6 @@ spec:
         namespace: elastic-system
         server: https://kubernetes.default.svc
       source:
-        path: manifests/eck/base
+        path: manifests/eck/install
         repoURL: https://github.com/luigiaparicio/openshift-elastic
         targetRevision: master
