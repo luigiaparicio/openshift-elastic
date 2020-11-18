@@ -12,6 +12,7 @@ spec:
       spec: {}
     tls:
       certificate: {}
+  version: 7.10.0
   nodeSets:
     - name: es-master
       config:
@@ -31,13 +32,13 @@ spec:
             - name: elasticsearch
               resources:
                 requests:
-                  memory: 4Gi
+                  memory: 4Gi # Minimo 2Gb
                   cpu: 1
                 limits:
                   memory: 4Gi
                   cpu: 1
-          # serviceAccount: elasticsearch
-          # serviceAccountName: elasticsearch
+          serviceAccount: elasticsearch
+          serviceAccountName: elasticsearch
       count: 3
     - name: es-data
       config:
@@ -57,13 +58,13 @@ spec:
             - name: elasticsearch
               resources:
                 requests:
-                  memory: 4Gi
+                  memory: 4Gi # Minimo 2Gb
                   cpu: 1
                 limits:
                   memory: 4Gi
                   cpu: 1
-          # serviceAccount: elasticsearch
-          # serviceAccountName: elasticsearch
+          serviceAccount: elasticsearch
+          serviceAccountName: elasticsearch
       count: 5
       volumeClaimTemplates:
         - metadata:
@@ -82,4 +83,3 @@ spec:
       spec: {}
   updateStrategy:
     changeBudget: {}
-  version: 7.9.3

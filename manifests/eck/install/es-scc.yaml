@@ -1,0 +1,7 @@
+apiVersion: v1
+kind: SecurityContextConstraints
+metadata:
+  name: scc-elasticsearch
+allowPrivilegedContainer: true
+users:
+- system:serviceaccount:elastic-system:elasticsearch

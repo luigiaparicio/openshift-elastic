@@ -2,6 +2,8 @@ bases:
 - ../base
 
 resources:
+- es-sa.yaml
+- es-scc.yaml
 - es-instance.yaml
 - es-route.yaml
 - kibana-instance.yaml
