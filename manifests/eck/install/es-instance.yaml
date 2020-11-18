@@ -65,7 +65,7 @@ spec:
                   cpu: 1
           serviceAccount: elasticsearch
           serviceAccountName: elasticsearch
-      count: 5
+      count: 3
       volumeClaimTemplates:
         - metadata:
             name: elasticsearch-data

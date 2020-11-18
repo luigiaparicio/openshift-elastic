@@ -5,7 +5,10 @@ metadata:
 allowHostPID: false
 allowHostNetwork: false
 allowPrivilegeEscalation: true
-allowedCapabilities: null
+allowedCapabilities:
+- '*'
+allowedUnsafeSysctls:
+- '*'
 allowPrivilegedContainer: true
 allowHostPorts: false
 allowHostDirVolumePlugin: false
@@ -14,16 +17,14 @@ defaultAddCapabilities: null
 fsGroup:
   type: MustRunAs
 priority: null
-requiredDropCapabilities:
-  - KILL
-  - MKNOD
-  - SETUID
-  - SETGID
+requiredDropCapabilities: null
 runAsUser:
-  type: MustRunAsRange
+  type: RunAsAny
 readOnlyRootFilesystem: false
 seLinuxContext:
-  type: MustRunAs
+  type: RunAsAny
+seccompProfiles:
+- '*'
 supplementalGroups:
   type: RunAsAny
 volumes:
