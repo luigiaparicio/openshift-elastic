@@ -1,7 +1,38 @@
-apiVersion: v1
+apiVersion: security.openshift.io/v1
 kind: SecurityContextConstraints
 metadata:
   name: scc-elasticsearch
+allowHostPID: false
+allowHostNetwork: false
+allowPrivilegeEscalation: true
+allowedCapabilities: null
 allowPrivilegedContainer: true
+allowHostPorts: false
+allowHostDirVolumePlugin: false
+allowHostIPC: false
+defaultAddCapabilities: null
+fsGroup:
+  type: MustRunAs
+priority: null
+requiredDropCapabilities:
+  - KILL
+  - MKNOD
+  - SETUID
+  - SETGID
+runAsUser:
+  type: MustRunAsRange
+readOnlyRootFilesystem: false
+seLinuxContext:
+  type: MustRunAs
+supplementalGroups:
+  type: RunAsAny
+volumes:
+  - configMap
+  - downwardAPI
+  - emptyDir
+  - persistentVolumeClaim
+  - projected
+  - secret
+groups: []
 users:
-- system:serviceaccount:elastic-system:elasticsearch
+  - 'system:serviceaccount:elastic-system:elasticsearch'
