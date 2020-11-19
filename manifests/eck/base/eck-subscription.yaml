@@ -2,12 +2,12 @@ apiVersion: operators.coreos.com/v1alpha1
 kind: Subscription
 metadata:
   name: elastic-cloud-eck
-  namespace: openshift-operators
+  namespace: elastic-system
 spec:
   name: elastic-cloud-eck
   channel: stable
   installPlanApproval: Automatic
-  source: certified-operators
+  source: community-operators
   sourceNamespace: openshift-marketplace
   config:
     volumes:
