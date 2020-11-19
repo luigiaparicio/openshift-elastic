@@ -2,7 +2,7 @@ apiVersion: v1
 kind: ConfigMap
 metadata:
   name: elastic-operator
-  namespace: openshift-operators
+  namespace: elastic-system
 data:
   eck.yaml: |-
     log-verbosity: 0
