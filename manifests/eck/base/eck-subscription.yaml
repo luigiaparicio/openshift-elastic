@@ -5,7 +5,7 @@ metadata:
   namespace: elastic-system
 spec:
   channel: stable
-  installPlanApproval: Automatic
+  installPlanApproval: Manual
   name: elastic-cloud-eck
   source: community-operators
   sourceNamespace: openshift-marketplace
