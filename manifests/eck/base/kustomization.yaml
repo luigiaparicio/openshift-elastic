@@ -2,3 +2,4 @@ resources:
 - eck-namespace.yaml
 - eck-operatorgroup.yaml
 - eck-subscription.yaml
+- eck-configmap.yaml
