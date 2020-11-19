@@ -32,32 +32,7 @@ spec:
             - name: elasticsearch
               env:
               - name: ES_JAVA_OPTS
-                value: -Xms2g -Xmx2g
-              resources:
-                requests:
-                  memory: 4Gi # Minimo 2Gb
-                  cpu: 1
-                limits:
-                  memory: 4Gi
-                  cpu: 1
-          serviceAccountName: elasticsearch
-      count: 3
-    - name: es-data
-      config:
-        node.roles: ["data", "ingest"]
-        node.store.allow_mmap: false
-      podTemplate:
-        metadata:
-          labels:
-            app: elasticsearch-sample
-        spec:
-          # initContainers:
-          #   - name: sysctl
-          #     securityContext:
-          #       privileged: true
-          #     command: ["sh", "-c", "sysctl -w vm.max_map_count=262144"]
-          containers:
-            - name: elasticsearch
+                value: -Xms3g -Xmx3g
               resources:
                 requests:
                   memory: 4Gi # Minimo 2Gb
@@ -76,6 +51,44 @@ spec:
             resources:
               requests:
                 storage: 10Gi
+            storageClassName: gp2
+    - name: es-data
+      config:
+        node.roles: ["data", "ingest"]
+        node.store.allow_mmap: false
+      podTemplate:
+        metadata:
+          labels:
+            app: elasticsearch-sample
+        spec:
+          # initContainers:
+          #   - name: sysctl
+          #     securityContext:
+          #       privileged: true
+          #     command: ["sh", "-c", "sysctl -w vm.max_map_count=262144"]
+          containers:
+            - name: elasticsearch
+              env:
+              - name: ES_JAVA_OPTS
+                value: -Xms3g -Xmx3g
+              resources:
+                requests:
+                  memory: 4Gi # Minimo 2Gb
+                  cpu: 1
+                limits:
+                  memory: 4Gi
+                  cpu: 1
+          serviceAccountName: elasticsearch
+      count: 3
+      volumeClaimTemplates:
+        - metadata:
+            name: elasticsearch-data
+          spec:
+            accessModes:
+              - ReadWriteOnce
+            resources:
+              requests:
+                storage: 30Gi
             storageClassName: gp2
   transport:
     service:
