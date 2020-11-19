@@ -5,14 +5,16 @@ metadata:
   namespace: elastic-system
 spec:
   version: 7.10.0
-  count: 1
+  count: 2
   elasticsearchRef:
     name: "elasticsearch-sample"
   podTemplate:
     spec:
+      nodeSelector:
+        elastic-cluster: elasticsearch-sample
       containers:
       - name: kibana
         resources:
           limits:
-            memory: 1Gi
+            memory: 2Gi
             cpu: 1
