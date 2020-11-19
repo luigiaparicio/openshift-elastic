@@ -5,9 +5,9 @@ metadata:
   namespace: openshift-operators
 spec:
   channel: stable
-  installPlanApproval: Automatic
+  installPlanApproval: Manual
   name: elastic-cloud-eck
-  source: community-operators
+  source: certified-operators
   sourceNamespace: openshift-marketplace
   startingCSV: elastic-cloud-eck.v1.3.0
   config:
