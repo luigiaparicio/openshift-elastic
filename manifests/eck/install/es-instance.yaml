@@ -32,7 +32,7 @@ spec:
             - name: elasticsearch
               env:
               - name: ES_JAVA_OPTS
-                value: -Xms3g -Xmx3g
+                value: -Xms2g -Xmx2g
               resources:
                 requests:
                   memory: 4Gi # Minimo 2Gb
@@ -70,13 +70,13 @@ spec:
             - name: elasticsearch
               env:
               - name: ES_JAVA_OPTS
-                value: -Xms3g -Xmx3g
+                value: -Xms8g -Xmx8g
               resources:
                 requests:
-                  memory: 4Gi # Minimo 2Gb
+                  memory: 16Gi # Minimo 2Gb
                   cpu: 1
                 limits:
-                  memory: 4Gi
+                  memory: 16Gi
                   cpu: 1
           serviceAccountName: elasticsearch
       count: 3
