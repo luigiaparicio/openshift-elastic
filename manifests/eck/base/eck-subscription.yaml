@@ -4,6 +4,7 @@ metadata:
   name: elastic-cloud-eck
   namespace: openshift-operators
 spec:
+  name: elastic-cloud-eck
   channel: stable
   installPlanApproval: Automatic
   source: certified-operators
