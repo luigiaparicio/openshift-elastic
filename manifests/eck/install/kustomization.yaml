@@ -2,7 +2,6 @@ bases:
 - ../base
 
 resources:
-- elastic-system-namespace.yaml
 - es-sa.yaml
 - es-scc.yaml
 - es-instance.yaml
