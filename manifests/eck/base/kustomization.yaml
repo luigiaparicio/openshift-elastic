@@ -2,3 +2,4 @@ resources:
 - eck-configmap.yaml
 - eck-subscription.yaml
 - eck-operatorgroup.yaml
+- elastic-system-namespace.yaml
