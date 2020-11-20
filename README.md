@@ -5,6 +5,13 @@
 
     until oc apply -k https://github.com/luigiaparicio/openshift-elastic/argocd/install; do sleep 3; done
     
+## Add Nodes for Elastic
+
+    CLUSTERID=$(oc get machineset -n openshift-machine-api -o jsonpath='{.items[0].metadata.labels.machine\.openshift\.io/cluster-api-cluster}')
+    echo $CLUSTERID
+
+    curl -s https://raw.githubusercontent.com/luigiaparicio/openshift-elastic/master/cluster-config/elastic-machineset.yaml | sed -e "s/CLUSTERID/${CLUSTERID}/g" | oc apply -f -
+    
 ## Install ECK + ES + Kibana
 
     oc apply -k https://github.com/luigiaparicio/openshift-elastic/cluster-config/config/overlays/default
