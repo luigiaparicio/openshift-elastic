@@ -27,6 +27,7 @@ spec:
         creationTimestamp: null
         labels:
           elastic-cluster: elasticsearch-sample
+          node-role.kubernetes.io/elastic: ""
           node-role.kubernetes.io/worker: ""
       providerSpec:
         value:
@@ -97,6 +98,7 @@ spec:
         creationTimestamp: null
         labels:
           elastic-cluster: elasticsearch-sample
+          node-role.kubernetes.io/elastic: ""
           node-role.kubernetes.io/worker: ""
       providerSpec:
         value:
@@ -167,6 +169,7 @@ spec:
         creationTimestamp: null
         labels:
           elastic-cluster: elasticsearch-sample
+          node-role.kubernetes.io/elastic: ""
           node-role.kubernetes.io/worker: ""
       providerSpec:
         value:
