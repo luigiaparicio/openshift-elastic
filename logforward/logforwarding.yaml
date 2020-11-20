@@ -1,0 +1,26 @@
+apiVersion: "logging.openshift.io/v1alpha1"
+kind: "LogForwarding"
+metadata:
+  name: instance 
+  namespace: openshift-logging
+spec:
+  disableDefaultForwarding: true 
+  outputs: 
+   - name: log-concentrator 
+     type: "elasticsearch"
+     endpoint: https://elasticsearch-sample-elastic-system.apps.cluster-d4c2.sandbox291.opentlc.com
+     secret: 
+        name: ocp-logfwd
+  pipelines:
+   - name: container-logs 
+     inputSource: logs.app
+     outputRefs:
+     - log-concentrator
+   - name: infra-logs
+     inputSource: logs.infra
+     outputRefs:
+     - log-concentrator
+   - name: audit-logs
+     inputSource: logs.audit
+     outputRefs:
+     - log-concentrator
