@@ -1,5 +1,7 @@
 # openshift-elastic
 
+*Test Env: OCP 4.5 on AWS us-east-2
+
 
 ## Install ArgoCD in OpenShift
 
