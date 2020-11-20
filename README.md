@@ -17,8 +17,7 @@
     
   After a couple of minutes you'll see new Nodes added and in Ready state
   
-    oc get nodes -l elastic-cluster=elasticsearch-sample
-    
+    $ oc get nodes -l elastic-cluster=elasticsearch-sample
     NAME                                         STATUS   ROLES    AGE    VERSION
     ip-10-0-132-221.us-east-2.compute.internal   Ready    worker   100s   v1.18.3+10e5708
     ip-10-0-174-238.us-east-2.compute.internal   Ready    worker   100s   v1.18.3+10e5708
