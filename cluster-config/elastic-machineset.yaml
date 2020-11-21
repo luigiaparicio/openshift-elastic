@@ -28,7 +28,6 @@ spec:
         labels:
           elastic-cluster: elasticsearch-sample
           node-role.kubernetes.io/elastic: ""
-          node-role.kubernetes.io/worker: ""
       providerSpec:
         value:
           ami:
@@ -99,7 +98,6 @@ spec:
         labels:
           elastic-cluster: elasticsearch-sample
           node-role.kubernetes.io/elastic: ""
-          node-role.kubernetes.io/worker: ""
       providerSpec:
         value:
           ami:
@@ -170,7 +168,6 @@ spec:
         labels:
           elastic-cluster: elasticsearch-sample
           node-role.kubernetes.io/elastic: ""
-          node-role.kubernetes.io/worker: ""
       providerSpec:
         value:
           ami:
