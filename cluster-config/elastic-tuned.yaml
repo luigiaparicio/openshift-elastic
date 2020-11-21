@@ -1,0 +1,22 @@
+apiVersion: tuned.openshift.io/v1
+kind: Tuned
+metadata:
+  name: openshift-elastic
+  namespace: openshift-cluster-node-tuning-operator
+spec:
+  profile:
+  - data: |
+      [main]
+      summary=Custom OpenShift node profile for Elastic
+      include=openshift-node
+      [bootloader]
+      cmdline_openshift_node_custom=+elastic=true
+      [sysctl]
+      vm.max_map_count=327680
+    name: openshift-elastic
+
+  recommend:
+  - machineConfigLabels:
+      machineconfiguration.openshift.io/role: "elastic"
+    priority: 15
+    profile: openshift-elastic
