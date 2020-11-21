@@ -9,6 +9,8 @@
     
 ## Add Nodes for Elastic
 
+### Create MachineSet
+
     CLUSTERID=$(oc get machineset -n openshift-machine-api -o jsonpath='{.items[0].metadata.labels.machine\.openshift\.io/cluster-api-cluster}')
     echo $CLUSTERID
 
@@ -23,9 +25,18 @@
   Example output:
    
     NAME                                         STATUS   ROLES    AGE    VERSION
-    ip-10-0-132-221.us-east-2.compute.internal   Ready    worker   100s   v1.18.3+10e5708
-    ip-10-0-174-238.us-east-2.compute.internal   Ready    worker   100s   v1.18.3+10e5708
-    ip-10-0-216-236.us-east-2.compute.internal   Ready    worker   99s    v1.18.3+10e5708
+    ip-10-0-132-221.us-east-2.compute.internal   Ready    elastic  100s   v1.18.3+10e5708
+    ip-10-0-174-238.us-east-2.compute.internal   Ready    elastic  100s   v1.18.3+10e5708
+    ip-10-0-216-236.us-east-2.compute.internal   Ready    elastic  99s    v1.18.3+10e5708
+    
+### Create MachineConfigPool
+
+    oc apply -f https://raw.githubusercontent.com/luigiaparicio/openshift-elastic/master/cluster-config/elastic-mcp.yaml
+    
+### Create Tuned config
+
+    oc apply -f https://raw.githubusercontent.com/luigiaparicio/openshift-elastic/master/cluster-config/elastic-tuned.yaml
+
     
 ## Install ECK + ES + Kibana
 
