@@ -29,7 +29,7 @@ spec:
           elastic-cluster: elasticsearch-sample
           node-role.kubernetes.io/elastic: ""
       taints:
-        key: node-role.kubernetes.io/elastic
+      - key: node-role.kubernetes.io/elastic
         effect: NoSchedule
       providerSpec:
         value:
