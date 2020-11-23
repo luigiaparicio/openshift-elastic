@@ -101,6 +101,9 @@ spec:
         labels:
           elastic-cluster: elasticsearch-sample
           node-role.kubernetes.io/elastic: ""
+      taints:
+      - key: "node-role.kubernetes.io/elastic"
+        effect: "NoSchedule"
       providerSpec:
         value:
           ami:
@@ -171,6 +174,9 @@ spec:
         labels:
           elastic-cluster: elasticsearch-sample
           node-role.kubernetes.io/elastic: ""
+      taints:
+      - key: "node-role.kubernetes.io/elastic"
+        effect: "NoSchedule"
       providerSpec:
         value:
           ami:
