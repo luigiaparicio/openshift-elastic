@@ -40,8 +40,15 @@ spec:
           - key: "node-role.kubernetes.io/elastic"
             effect: NoSchedule
             operator: Exists
-          nodeSelector:
-            elastic-cluster: elasticsearch-sample
+          affinity:
+            nodeAffinity:
+              requiredDuringSchedulingIgnoredDuringExecution:
+                nodeSelectorTerms:
+                - matchExpressions:
+                  - key: elastic-cluster
+                    operator: In
+                    values:
+                    - elasticsearch-sample
       count: 3
       volumeClaimTemplates:
         - metadata:
@@ -79,8 +86,15 @@ spec:
           - key: "node-role.kubernetes.io/elastic"
             effect: NoSchedule
             operator: Exists
-          nodeSelector:
-            elastic-cluster: elasticsearch-sample
+          affinity:
+            nodeAffinity:
+              requiredDuringSchedulingIgnoredDuringExecution:
+                nodeSelectorTerms:
+                - matchExpressions:
+                  - key: elastic-cluster
+                    operator: In
+                    values:
+                    - elasticsearch-sample
       count: 3
       volumeClaimTemplates:
         - metadata:
