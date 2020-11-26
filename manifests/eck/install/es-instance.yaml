@@ -13,7 +13,7 @@ spec:
     tls:
       selfSignedCertificate:
         subjectAltNames:
-        - dns: .opentlc.com
+        - dns: "*.opentlc.com"
   version: 7.10.0
   nodeSets:
     - name: es-master
