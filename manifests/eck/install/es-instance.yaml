@@ -11,6 +11,9 @@ spec:
         creationTimestamp: null
       spec: {}
     tls:
+      selfSignedCertificate:
+        subjectAltNames:
+        - dns: *.opentlc.com
       certificate: {}
   version: 7.10.0
   nodeSets:
