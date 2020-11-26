@@ -12,6 +12,10 @@ spec:
     spec:
       nodeSelector:
         elastic-cluster: elasticsearch-sample
+      tolerations:
+        - key: "node-role.kubernetes.io/elastic"
+          effect: NoSchedule
+          operator: Exists
       containers:
       - name: kibana
         resources:
