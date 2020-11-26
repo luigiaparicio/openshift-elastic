@@ -14,7 +14,6 @@ spec:
       selfSignedCertificate:
         subjectAltNames:
         - dns: *.opentlc.com
-      certificate: {}
   version: 7.10.0
   nodeSets:
     - name: es-master
