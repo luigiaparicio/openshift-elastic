@@ -7,7 +7,7 @@ spec:
   name: elastic-cloud-eck
   channel: stable
   installPlanApproval: Automatic
-  source: community-operators
+  source: certified-operators
   sourceNamespace: openshift-marketplace
   config:
     volumes:
