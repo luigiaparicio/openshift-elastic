@@ -15,6 +15,7 @@ spec:
         subjectAltNames:
         - dns: "*.opentlc.com"
   version: 7.10.0
+  image: quay.io/santander/elasticsearch:7.10.0
   nodeSets:
     - name: es-master
       config:
