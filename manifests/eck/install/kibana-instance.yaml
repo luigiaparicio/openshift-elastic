@@ -5,6 +5,7 @@ metadata:
   namespace: elastic-system
 spec:
   version: 7.10.0
+    image: quay.io/santander/kibana:7.10.0
   count: 2
   elasticsearchRef:
     name: "elasticsearch-sample"
