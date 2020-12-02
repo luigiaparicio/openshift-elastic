@@ -7,7 +7,7 @@ data:
   eck.yaml: |-
     log-verbosity: 0
     metrics-port: 6060
-    container-registry: docker.elastic.co
+    container-registry: quay.io/santander
     max-concurrent-reconciles: 3
     ca-cert-validity: 8760h
     ca-cert-rotate-before: 24h
