@@ -6,7 +6,7 @@ metadata:
 spec:
   disableDefaultForwarding: true 
   outputs: 
-   - name: log-concentrator 
+   - name: log-concentrator
      type: "elasticsearch"
      endpoint: https://elasticsearch-sample-elastic-system.apps.cluster-d4c2.sandbox291.opentlc.com
      secret: 
@@ -16,6 +16,14 @@ spec:
      inputSource: logs.app
      outputRefs:
      - log-concentrator
+  #  - name: namespaces-logs 
+  #    inputSource: logs.app
+  #    # podemos especificiar namespaces para filtrar
+  #    namespace:
+  #      - proyecto1
+  #      - proyecto2
+  #    outputRefs:
+  #    - log-concentrator
    - name: infra-logs
      inputSource: logs.infra
      outputRefs:
