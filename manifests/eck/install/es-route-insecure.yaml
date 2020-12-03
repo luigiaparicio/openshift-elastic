@@ -1,0 +1,9 @@
+apiVersion: route.openshift.io/v1
+kind: Route
+metadata:
+  name: elasticsearch-sample-insecure
+  namespace: elastic-system
+spec:
+  to:
+    kind: Service
+    name: elasticsearch-sample-es-http
