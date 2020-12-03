@@ -6,5 +6,6 @@ resources:
 #- es-scc.yaml
 - es-instance.yaml
 - es-route.yaml
+- es-route-insecure.yaml
 - kibana-instance.yaml
 - kibana-route.yaml
