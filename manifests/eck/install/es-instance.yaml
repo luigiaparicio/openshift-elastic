@@ -15,7 +15,7 @@ spec:
     tls:
       selfSignedCertificate:
         subjectAltNames:
-        - dns: "elasticsearch-sample-elastic-system.apps.cluster-3410.sandbox507.opentlc.com"
+        - dns: "*.apps.cluster-3410.sandbox507.opentlc.com"
 #        disabled: true
   version: 7.10.0
 #  image: quay.io/santander/elasticsearch:7.10.0
