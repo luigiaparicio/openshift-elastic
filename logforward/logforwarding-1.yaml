@@ -1,0 +1,35 @@
+apiVersion: logging.openshift.io/v1alpha1
+kind: LogForwarding
+metadata:
+  name: instance
+  namespace: openshift-logging
+spec:
+  disableDefaultForwarding: true
+  outputs:
+    - endpoint: 'elasticsearch.openshift-logging.svc:9200'
+      name: elastic-local
+      secret:
+        name: fluentd
+      type: elasticsearch
+    - endpoint: >-
+        elasticsearch-sample-elastic-system.apps.cluster-3410.sandbox507.opentlc.com:443
+      name: elastic-offcluster
+      secret:
+        name: something
+      type: elasticsearch
+  pipelines:
+    - inputSource: logs.app
+      name: container-logs
+      outputRefs:
+        - elastic-local
+        - elastic-offcluster
+    - inputSource: logs.infra
+      name: infra-logs
+      outputRefs:
+        - elastic-local
+        - elastic-offcluster
+    - inputSource: logs.audit
+      name: audit-logs
+      outputRefs:
+        - elastic-local
+        - elastic-offcluster
