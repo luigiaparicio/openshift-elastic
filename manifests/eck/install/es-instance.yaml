@@ -14,9 +14,9 @@ spec:
       spec: {}
     tls:
       selfSignedCertificate:
-#        subjectAltNames:
-#        - dns: "*.opentlc.com"
-         disabled: true
+        subjectAltNames:
+        - dns: "*.opentlc.com"
+#        disabled: true
   version: 7.10.0
 #  image: quay.io/santander/elasticsearch:7.10.0
   nodeSets:
