@@ -4,6 +4,7 @@ bases:
 resources:
 #- es-sa.yaml
 #- es-scc.yaml
+- es-filerealm-secret.yaml
 - es-instance.yaml
 - es-route.yaml
 - es-route-insecure.yaml
