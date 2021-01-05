@@ -1,5 +1,5 @@
 resources:
+- elastic-system-namespace.yaml
 - eck-configmap.yaml
 - eck-subscription.yaml
 - eck-operatorgroup.yaml
-- elastic-system-namespace.yaml
