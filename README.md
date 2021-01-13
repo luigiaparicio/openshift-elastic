@@ -48,3 +48,11 @@
 
     oc get secret -n elastic-system elasticsearch-sample-es-elastic-user -o go-template='{{.data.elastic | base64decode}}'
 
+## Install openshift-logging
+
+openshift-logging must be installed in the cluster
+
+- OperatorHub -> Openshift Logging -> install in openshift-logging namespace
+- OperatorHub -> Elasticsearch 4.5 by Red Hat -> install all namespaces
+- Create Openshift logging Instance (follow Form steps)
+  - Log store:  2Gi Req, 2Gi Limit, 50G disk space, ZeroRedundancy
