@@ -15,8 +15,6 @@ ES_URL=https://elasticsearch-sample-es-http.elastic-system.svc:9200
 
 ## Crear Enrich policy
 
-
-
 ```bash
 curl -XPUT "${ES_URL}/_enrich/policy/openshift_cluster" \
  -H 'Content-Type: application/json' \
@@ -69,8 +67,33 @@ curl -XPOST "${ES_URL}/openshift_servers/_bulk" \
 {"hostname": "infra-3", "ip": "10.2.1.3", "cluster_id": "cluster-2"}'
 ```
 
-## Crear Pipeline
+### Actualizar Enrich data
 
+Si tenemos que agregar un nodo nuevo en uno de los clusters:
+
+```bash
+curl -XPOST "${ES_URL}/openshift_servers/_doc" \
+-H 'Content-Type: application/json' \
+-d '{"hostname": "infra-3", "ip": "10.2.1.3", "cluster_id": "cluster-2"}'
+```
+
+Si tenemos que actualizar un dato existente, 
+
+- primero obtenemos el id
+```bash
+curl -XGET "${ES_URL}/openshift_servers/_search" \
+-H 'Content-Type: application/json'
+```
+
+- luego ejecutamos un POST utilizando el ID obtenido
+
+```bash
+curl -XPOST "${ES_URL}/openshift_servers/_doc/<ID>" \
+-H 'Content-Type: application/json' \
+-d '{"hostname": "infra-3", "ip": "10.2.1.3", "cluster_id": "cluster-2"}'
+```
+
+## Crear Pipeline
 
 ```bash
 curl -XPUT "${ES_URL}/_ingest/pipeline/cluster_id_pipeline" \
@@ -115,7 +138,7 @@ curl -XPUT "${ES_URL}/_index_template/log_concentrator" \
 }'
 ```
 
-### Configurar Pipeline como default 
+### Configurar Pipeline como default
 
 si no usamos el template mencionado arriba, para una prueba rápida sobre un indice creado seteamos el pipeline default asi:
 
