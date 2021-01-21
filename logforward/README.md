@@ -6,6 +6,8 @@ Para "expandir" la información que llega de cada entrada de log, combinamos
 - un pipeline default para cada indice, que usará la politica para expandir la info
 - un template para la creación automatica de los indices que setee esta configuracion
 
+La doc de base es la [siguiente](https://www.elastic.co/guide/en/elasticsearch/reference/7.10/match-enrich-policy-type.html)
+
 ## Seteo de variables
 
 ```bash
@@ -13,24 +15,7 @@ ES_URL=https://elasticsearch-sample-es-http.elastic-system.svc:9200
 
 ```
 
-## Crear Enrich policy
-
-```bash
-curl -XPUT "${ES_URL}/_enrich/policy/openshift_cluster" \
- -H 'Content-Type: application/json' \
- -d'
- {
-   "match": {
-     "indices": "openshift_servers",
-     "match_field": "ip",
-     "enrich_fields": ["cluster_id"]
-    }
- }'
-
-curl -XPOST "${ES_URL}/_enrich/policy/openshift_cluster/_execute"
-```
-
-### Crear Enrich data
+## Crear Enrich data
 
 Creamos un indice `openshift_servers` que contendrá los datos para hacer matching:
 
@@ -67,6 +52,24 @@ curl -XPOST "${ES_URL}/openshift_servers/_bulk" \
 {"hostname": "infra-3", "ip": "10.2.1.3", "cluster_id": "cluster-2"}'
 ```
 
+## Crear Enrich policy
+
+```bash
+curl -XPUT "${ES_URL}/_enrich/policy/openshift_cluster" \
+ -H 'Content-Type: application/json' \
+ -d'
+ {
+   "match": {
+     "indices": "openshift_servers",
+     "match_field": "ip",
+     "enrich_fields": ["cluster_id"]
+    }
+ }'
+
+curl -XPOST "${ES_URL}/_enrich/policy/openshift_cluster/_execute"
+```
+
+
 ### Actualizar Enrich data
 
 Si tenemos que agregar un nodo nuevo en uno de los clusters:
@@ -74,7 +77,7 @@ Si tenemos que agregar un nodo nuevo en uno de los clusters:
 ```bash
 curl -XPOST "${ES_URL}/openshift_servers/_doc" \
 -H 'Content-Type: application/json' \
--d '{"hostname": "infra-3", "ip": "10.2.1.3", "cluster_id": "cluster-2"}'
+-d '{"hostname": "worker-3", "ip": "10.2.100.3", "cluster_id": "cluster-2"}'
 ```
 
 Si tenemos que actualizar un dato existente, 
@@ -99,11 +102,17 @@ curl -XPOST "${ES_URL}/openshift_servers/_doc/<ID>" \
 curl -XPUT "${ES_URL}/_ingest/pipeline/cluster_id_pipeline" \
 -H 'Content-Type: application/json' \
 -d'{
-  "match": {
-    "indices": "openshift_servers",
-    "match_field": "ip",
-    "enrich_fields": ["cluster_id"]
-  }
+  "description" : "En base al campo ip exapnde buscando el cluster_id en openshift_cluster",
+  "processors" : [
+    {
+      "enrich" : {
+        "policy_name": "openshift_cluster",
+        "field" : "pipeline_metadata.collector.ipaddress4",
+        "target_field": "cluster_info",
+        "max_matches": "1"
+      }
+    }
+  ]
 }'
 ```
 
